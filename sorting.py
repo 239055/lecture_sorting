@@ -1,4 +1,5 @@
 import os
+import csv
 
 
 def read_data(file_name):
@@ -11,10 +12,23 @@ def read_data(file_name):
     cwd_path = os.getcwd()
     file_path = os.path.join(cwd_path, file_name)
 
+    with open(file_path, 'r') as f:
+        prochaz = csv.DictReader(f)
+        data = {}
+        for radek in prochaz:
+            for hlavicka, hodnota in radek.items():
+                if hlavicka not in data:
+                    data[hlavicka] = [int(hodnota)]
+                else:
+                    data[hlavicka].append(int(hodnota))
+        return data
+
 
 def main():
-    pass
+    data = read_data('numbers.csv')
+    print(data["series_3"])
 
 
 if __name__ == '__main__':
     main()
+
