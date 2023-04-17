@@ -24,28 +24,48 @@ def read_data(file_name):
         return data
 
 
-def selection_sort(seznam_cisel):
+def selection_sort(seznam_cisel, direction="vzestupne"):
     """
 
     :param seznam_cisel:
     :return:
     """
     n = len(seznam_cisel)
+
+
     for i in range(n - 1):
         min_idx = i
         for j in range(i + 1, n):
             if seznam_cisel[j] < seznam_cisel[min_idx]:
                 min_idx = j
         seznam_cisel[i], seznam_cisel[min_idx] = seznam_cisel[min_idx], seznam_cisel[i]
-    return seznam_cisel
+
+    if direction == "vzestupne":
+        return seznam_cisel
+
+    elif direction == "sestupne":
+        sestupny = []
+        pocet_apl = 0
+
+        idx = -1
+        for x in range(n):
+            sestupny.append(seznam_cisel[idx])
+            idx -= 1
+
+        return sestupny
+
+    else:
+        return "Error"
 
 
 def main():
-    data = read_data('numbers.csv')
-    print(data["series_3"])
+    # data = read_data('numbers.csv')
+    # print(data["series_3"])
     seznam = [1058, 998, 1235, 1147, 3365, 7741, 1011, 6555, 666, 6666, 7777]
-    serazeni = selection_sort(seznam)
-    print(serazeni)
+    serazeni_vz = selection_sort(seznam)
+    serazeni_ses = selection_sort(seznam, "sestupne")
+    print(serazeni_vz)
+    print(serazeni_ses)
 
 if __name__ == '__main__':
     main()
