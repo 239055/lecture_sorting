@@ -58,14 +58,31 @@ def selection_sort(seznam_cisel, direction="vzestupne"):
         return "Error"
 
 
+def bubble_sort(seznam):
+    """
+
+    :param seznam:
+    :return:
+    """
+    n = len(seznam)
+
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if seznam[j] > seznam[j+1]:
+                seznam[j], seznam[j+1] = seznam[j+1], seznam[j]
+    return seznam
+
+
 def main():
     # data = read_data('numbers.csv')
     # print(data["series_3"])
     seznam = [1058, 998, 1235, 1147, 3365, 7741, 1011, 6555, 666, 6666, 7777]
     serazeni_vz = selection_sort(seznam)
     serazeni_ses = selection_sort(seznam, "sestupne")
-    print(serazeni_vz)
-    print(serazeni_ses)
+    # print(serazeni_vz)
+    # print(serazeni_ses)
+    buble = bubble_sort(seznam)
+    print(buble)
 
 if __name__ == '__main__':
     main()
