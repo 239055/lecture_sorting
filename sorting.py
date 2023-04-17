@@ -64,13 +64,31 @@ def bubble_sort(seznam):
     :param seznam:
     :return:
     """
-    n = len(seznam)
+    delka = len(seznam)
 
-    for i in range(n):
-        for j in range(0, n-i-1):
-            if seznam[j] > seznam[j+1]:
-                seznam[j], seznam[j+1] = seznam[j+1], seznam[j]
+    for x in range(delka):
+        for y in range(0, delka-x-1):
+            if seznam[y] > seznam[y+1]:
+                seznam[y], seznam[y+1] = seznam[y+1], seznam[y]
     return seznam
+
+
+def insertion_sort(seznam):
+    """
+
+    :param seznam:
+    :return:
+    """
+    delka = len(seznam)
+    for k in range(1, delka):
+        klic_pozice = seznam[k]
+        z = k - 1
+        while z >= 0 and seznam[z] > klic_pozice:
+            seznam[z+1] = seznam[z]
+            z -= 1
+        seznam[z+1] = klic_pozice
+    return seznam
+
 
 
 def main():
@@ -83,6 +101,8 @@ def main():
     # print(serazeni_ses)
     buble = bubble_sort(seznam)
     print(buble)
+    insert = insertion_sort(seznam)
+    print(insert)
 
 if __name__ == '__main__':
     main()
